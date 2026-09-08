@@ -33,6 +33,8 @@
     "check:lint": "biome ci .",
     "check:ci": "bun run check:lint && bun run typecheck && bun run test && bun run build && bun run pack:check",
     "pack:check": "bun scripts/check-pack.ts",
+    "verify:pack": "node scripts/verify-pack.mjs",
+    "consumer:smoke": "node scripts/consumer-smoke.mjs",
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
