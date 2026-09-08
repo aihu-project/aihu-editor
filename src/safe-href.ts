@@ -1,7 +1,7 @@
 /**
  * safeHref — the one link-safety contract (spec §6.1 step 4, threat T2).
  *
- * Same semantics as fellwork/web's `markdown.ts` `safeHref`: only same-origin
+ * Same semantics as the Aihu web markdown implementation's `safeHref`: only same-origin
  * paths (`/…`, never protocol-relative `//…`), `http(s)://`, and `mailto:`
  * survive. Everything else — `javascript:`, `data:`, `vbscript:`, bare
  * `//host` — returns null; callers drop the link and keep the label as text

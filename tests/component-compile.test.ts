@@ -15,7 +15,10 @@ async function loadCompiler(): Promise<TransformFn | null> {
   try {
     const mod = (await import('@aihu/compiler')) as { transform: TransformFn }
     // probe: throws when the native binary is missing
-    mod.transform('@state {\n  let x = state(0)\n}\n\n@template {\n  <p>{x}</p>\n}', 'probe-x.aihu')
+    mod.transform(
+      '@state {\n  let x = state(0)\n}\n\n@template {\n  <p>{x}</p>\n}',
+      'aihu-probe.aihu',
+    )
     return mod.transform
   } catch {
     return null

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+test-results/
+playwright-report/
+.codemap/*
+!.codemap/config.json
+.DS_Store

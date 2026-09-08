@@ -1,0 +1,30 @@
+{
+  "only": ["ts", "aihu", "json", "md", "yml", "yaml"],
+  "exclude": ["dist", "coverage", "test-results", "playwright-report", "node_modules"],
+  "depth": 4,
+  "routing": {
+    "subsystems": [
+      {
+        "name": "editor-runtime",
+        "paths": ["src", "tests"],
+        "keywords": ["EditorCore", "EditorView", "AgentGateway", "DocNode"],
+        "docs": ["README.md"],
+        "note": "Codemap cannot infer the runtime contract between the DOM-free transaction core, DOM view, and agent gateway because the coupling is carried by shared types and event origins rather than imports alone."
+      },
+      {
+        "name": "component-compiler-gate",
+        "paths": ["components", "tests/component-compile.test.ts", "package.json"],
+        "keywords": ["@aihu/compiler", "registerAgentMetadata", "component-compile"],
+        "docs": ["README.md"],
+        "note": "The SFC fixtures and the published compiler version are coupled by a release boundary that Codemap cannot follow through npm package resolution."
+      },
+      {
+        "name": "browser-acceptance",
+        "paths": ["e2e", "src/view.ts"],
+        "keywords": ["playwright", "contenteditable", "compositionend", "beforeinput"],
+        "docs": ["README.md"],
+        "note": "Browser behavior is exercised through a served harness and Playwright project, so the runtime-to-harness relationship is a process boundary rather than a module edge."
+      }
+    ]
+  }
+}

@@ -4,9 +4,9 @@
 
 Hand-rolled, dependency-free, GX-governed rich-text editor — JSON doc model, invertible transactions, markdown (web-v1 dialect) round-trip, contenteditable view with IME-safe read-back, agent read/suggest/write surface.
 
-Held-private workspace package. Not yet published to npm.
+Standalone package repository. The editor is published independently from the framework runtime.
 
-> **Status:** Held private — not yet published to npm. See [v1.1 roadmap](../../docs/roadmap/SUMMARY.md) for ratification gating (e.g. RFC #56 live-binding for `@aihu/plugin` enforcement).
+> **Status:** Experimental — API and component contracts may still change.
 
 <!-- BEGIN_HANDWRITTEN: prose -->
 ## What this is
@@ -27,7 +27,7 @@ core.onTransaction((tr, doc) => console.log(tr.origin, toMarkdown(doc)))
 
 ## Markdown — the web-v1 dialect
 
-`toMarkdown`/`fromMarkdown` are dialect-locked to fellwork/web's `journal/markdown.ts` **plus** the landed escape semantics of web#46: all-ASCII-punctuation backslash escapes, honored line-start escapes (`\#`, `\-`, `\>`, `1\.`, `\---`), verbatim code spans (backtick content gets a longer delimiter, never `\` inside a span), and no hard line breaks. The round-trip contract — `fromMarkdown(toMarkdown(d)) ≡ d` (mod ids) — is enforced by a vendored golden corpus (`tests/fixtures/golden.json`) and 1 000 fuzzed docs per run. Fenced code blocks and pipe tables are v2: they import as degraded paragraphs, and the editor never emits them.
+`toMarkdown`/`fromMarkdown` implement the Aihu web markdown dialect plus its landed escape semantics: all-ASCII-punctuation backslash escapes, honored line-start escapes (`\#`, `\-`, `\>`, `1\.`, `\---`), verbatim code spans (backtick content gets a longer delimiter, never `\` inside a span), and no hard line breaks. The round-trip contract — `fromMarkdown(toMarkdown(d)) ≡ d` (mod ids) — is enforced by a vendored golden corpus (`tests/fixtures/golden.json`) and 1 000 fuzzed docs per run. Fenced code blocks and pipe tables are v2: they import as degraded paragraphs, and the editor never emits them.
 
 ## Security posture
 
@@ -44,7 +44,7 @@ The thesis-critical part: the keyboard and the agent share ONE transaction pipel
 ## Testing
 
 - Unit (vitest/jsdom): core, steps/inversion, history, serializers + round-trip fuzz, input rules, commands, paste sanitization, position map, read-back, view, agent gateway, compile gate for the SFCs.
-- Real browsers (Playwright, chromium+webkit+firefox): `bun run test:e2e` — typing/IME (real Chromium IME via CDP), paste, agent tiers, structure-aware read-back, selection survival. Playwright is a root devDependency.
+- Real browsers (Playwright, chromium+webkit+firefox): `bun run test:e2e` — typing/IME (real Chromium IME via CDP), paste, agent tiers, structure-aware read-back, selection survival.
 <!-- END_HANDWRITTEN: prose -->
 
 ## Install
@@ -113,9 +113,8 @@ bun add @aihu/editor
 <!-- BEGIN_AUTOGEN: see-also -->
 <!-- regenerate: bun scripts/sync-readme.ts (also runs in pre-commit + CI) -->
 
-- [@aihu/agent](../agent)
-- [@aihu/store](../store)
-- [Aihu framework root](../../README.md)
+- [@aihu/signals](https://www.npmjs.com/package/@aihu/signals)
+- [Aihu framework](https://github.com/aihu-project/aihu)
 
 <sub><i>Auto-generated against `@aihu/editor@0.1.2`.</i></sub>
 
@@ -126,7 +125,7 @@ bun add @aihu/editor
 <!-- BEGIN_AUTOGEN: license -->
 <!-- regenerate: bun scripts/sync-readme.ts (also runs in pre-commit + CI) -->
 
-MIT — see [LICENSE](../../LICENSE).
+MIT — see [LICENSE](./LICENSE).
 
 <sub><i>Auto-generated against `@aihu/editor@0.1.2`.</i></sub>
 

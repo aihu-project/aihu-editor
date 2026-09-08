@@ -1,5 +1,5 @@
 // Round-trip acceptance (A4): the golden fixture corpus (vendored in-package;
-// cross-repo CI against web's markdown.ts is a fellwork/web follow-up) plus
+// cross-repo CI against the web markdown implementation is a follow-up) plus
 // 1 000 fuzzed dialect-guarded docs via fast-check.
 //
 // Contract (spec §8.1): toMarkdown(fromMarkdown(m)) byte-identical for m in

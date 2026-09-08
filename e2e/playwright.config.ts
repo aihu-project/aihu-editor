@@ -1,5 +1,5 @@
 // @aihu/editor e2e — real-browser acceptance (spec §10 view criteria).
-// Run: cd packages/editor && bun run test:e2e
+// Run: bun run test:e2e
 // Engines: chromium always; webkit/firefox when installed
 // (EDITOR_WEBKIT=0 / EDITOR_FIREFOX=0 to skip).
 
