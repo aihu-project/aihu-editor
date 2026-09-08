@@ -37,8 +37,13 @@ jobs:
           RELEASE_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
-          git fetch --no-tags origin "$DEFAULT_BRANCH" --depth=1
+          git fetch --no-tags origin "$DEFAULT_BRANCH"
           git merge-base --is-ancestor "$RELEASE_SHA" FETCH_HEAD
+      - name: Verify reviewed merged release commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ github.sha }}
+        run: node scripts/assert-reviewed-release.mjs
       - name: Prepare OIDC-only npm config
         run: printf '%s\n' 'registry=https://registry.npmjs.org/' > "$NPM_CONFIG_USERCONFIG"
       - name: Pin npm for trusted publishing
