@@ -2,7 +2,8 @@
  * Serialization — doc ⇄ markdown in the `web-v1` dialect (spec §8).
  *
  * The normative grammar is the Aihu web markdown implementation **plus the
- * landed escape semantics of fellwork/web#46** (spec §8.2 RESOLVED block):
+ * landed escape semantics of the original web implementation** (spec §8.2
+ * RESOLVED block):
  *
  *   - Escapable set is all ASCII punctuation (GFM); `\` before
  *     letters/digits/space/EOL and a trailing lone `\` stay literal.
